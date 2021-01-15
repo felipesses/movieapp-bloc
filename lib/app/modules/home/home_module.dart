@@ -1,4 +1,6 @@
-import 'home_bloc.dart';
+import 'package:rxbloc/app/modules/home/bloc/movie_bloc.dart';
+
+import 'bloc/person_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
@@ -6,7 +8,8 @@ import 'home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => HomeBloc()),
+        Bind((i) => MovieBloc()),
+        Bind((i) => PersonBloc()),
       ];
 
   @override

@@ -1,26 +1,24 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxbloc/app/models/movie_response.dart';
 import 'package:rxbloc/app/repositores/movie_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class HomeBloc implements Disposable {
+class MovieBloc implements Disposable {
   final MovieRepository _repository = MovieRepository();
-  final BehaviorSubject<MovieResponse> _subject =
+  final BehaviorSubject<MovieResponse> _movieSubject =
       BehaviorSubject<MovieResponse>();
 
   getMovies() async {
     MovieResponse response = await _repository.getMovies();
-    _subject.sink.add(response);
+    _movieSubject.sink.add(response);
   }
 
   @override
   void dispose() {
-    _subject.close();
+    _movieSubject.close();
   }
 
-  BehaviorSubject<MovieResponse> get subject => _subject;
+  BehaviorSubject<MovieResponse> get movieSubject => _movieSubject;
 }
 
-final moviesBloc = HomeBloc();
+final moviesBloc = MovieBloc();
